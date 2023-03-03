@@ -46,6 +46,22 @@ task("deploy-with-pk", "Deploys contract with pk")
     await main(privateKey);
   });  
 
+task("encrypt-wallet", "Encrypt-wallet")
+  .addParam("privateKey", "Please provide the private key")
+  .addParam("password", "Please provide the password to un-encrypt the wallet")
+  .setAction(async ({ privateKey, password}) => {
+    const { main } = await lazyImport("./scripts/encrypt-wallet");
+    await main(privateKey, password);
+  });  
+
+task("decrypt-wallet", "Decrypt-wallet")
+  .addParam("path", "Please provide the path to the encrypted wallet file")
+  .addParam("password", "Please provide the password to un-encrypt the wallet")
+  .setAction(async ({ path, password}) => {
+    const { main } = await lazyImport("./scripts/decrypt-wallet");
+    await main(path, password);
+  });    
+
 subtask("print", "Prints a message")
   .addParam("message", "The message to print")
   .setAction(async (taskArgs) => {
