@@ -5,7 +5,7 @@ const fs = require('fs');
 
 
 
-const loadData = (path) => {
+const loadData = (path: string) => {
     try {
       return fs.readFileSync(path, 'utf8')
     } catch (err) {
